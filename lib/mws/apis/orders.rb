@@ -191,15 +191,16 @@ class Mws::Apis::Orders
   #
   # orders = {:amazon_order_id => 123, :order_items => [{:order_item_id => 124, :amount => 125}] }
   def send_fulfillment_data(params, orders)
-    raise Mws::Errors::ValidationError.new('orders must be an array') if !orders.is_a?(Array)
-    raise Mws::Errors::ValidationError.new('An amazon_order_id is needed') if !orders.first.has_key?(:amazon_order_id)
-    raise Mws::Errors::ValidationError.new('An amazon_order_id is needed') if !orders.first[:amazon_order_id].present?
-    raise Mws::Errors::ValidationError.new('A carrier_code is needed') if !orders.first.has_key?(:carrier_code) || !orders.first[:carrier_code].present?
-    raise Mws::Errors::ValidationError.new('A shipping_method is needed') if !orders.first.has_key?(:shipping_method) || !orders.first[:shipping_method].present?
-    raise Mws::Errors::ValidationError.new('orders must be a array.') if !orders.is_a?(Array)
-    raise Mws::Errors::ValidationError.new('At least one order is needed.') if orders.count == 0
-    raise Mws::Errors::ValidationError.new('order_items must be a array.') if !orders.first[:order_items].is_a?(Array)
-    raise Mws::Errors::ValidationError.new('order_items must be a array.') if orders.first[:order_items].count == 0
+    raise Mws::Errors::ValidationError.new('orders must be an array')         unless orders.is_a?(Array)
+    raise Mws::Errors::ValidationError.new('An amazon_order_id is needed')    unless orders.first.has_key?(:amazon_order_id)
+    raise Mws::Errors::ValidationError.new('An amazon_order_id is needed')    unless orders.first[:amazon_order_id].present?
+    raise Mws::Errors::ValidationError.new('A carrier_code is needed')        unless orders.first.has_key?(:carrier_code) && orders.first[:carrier_code].present?
+    raise Mws::Errors::ValidationError.new('A shipping_method is needed')     unless orders.first.has_key?(:shipping_method) && orders.first[:shipping_method].present?
+    raise Mws::Errors::ValidationError.new('orders must be a array.')         unless orders.is_a?(Array)
+    raise Mws::Errors::ValidationError.new('At least one order is needed.')   if orders.count == 0
+    raise Mws::Errors::ValidationError.new('order_items must be a array.')    unless orders.first[:order_items].is_a?(Array)
+    raise Mws::Errors::ValidationError.new('order_items must be a array.')    if orders.first[:order_items].count == 0
+
     params[:markets] ||= [ params.delete(:markets) || params.delete(:market) || @param_defaults[:market] ].flatten.compact
 
     message_number = 0
@@ -241,4 +242,41 @@ class Mws::Apis::Orders
 
   end
 
+  def send_order_acknowledgement(params, orders)
+    # Validations
+    raise Mws::Errors::ValidationError.new('orders must be an array')         unless orders.is_a?(Array)
+    raise Mws::Errors::ValidationError.new('An amazon_order_id is needed')    unless orders.first.has_key?(:amazon_order_id)
+
+    message_number = 0
+
+    order_xml = Nokogiri::XML::Builder.new do | xml |
+      xml.AmazonEnvelope('xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'xsi:noNamespaceSchemaLocation' => 'amznenvelope.xsd') {
+        xml.Header {
+          xml.DocumentVersion '1.01'
+          xml.MerchantIdentifier params[:merchant_identifier]
+        }
+        xml.MessageType 'OrderAcknowledgement'
+
+        orders.each do | order |
+          xml.Message {
+            xml.MessageID (message_number+=1).to_s
+            xml.OrderAcknowledgement {
+              xml.AmazonOrderID     order[:amazon_order_id]
+              xml.MerchantOrderID   order[:merchant_order_id]
+              xml.StatusCode        order[:status_code]
+            }
+             order[:order_items].each do | item |
+               xml.Item {
+                 xml.AmazonOrderItemCode item[:order_item_id]
+                 xml.MerchantOrderItemID item[:merchant_order_id]
+               }
+             end
+          }
+        end
+      }
+    end.to_xml
+
+    @connection.feeds.submit order_xml, {:feed_type => :order_acknowledgement}
+
+  end
 end

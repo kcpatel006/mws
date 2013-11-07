@@ -72,6 +72,15 @@ module Mws::Apis
 
     end
 
+    context 'send_order_acknowledgement' do
+
+      it 'should require an amazon_order_id' do
+        expect {
+          orders.send_order_acknowledgement(Hash.new, [{}])
+        }.to raise_error Mws::Errors::ValidationError, 'An amazon_order_id is needed'
+      end
+
+    end
   end
 
 end

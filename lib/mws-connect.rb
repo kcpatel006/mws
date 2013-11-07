@@ -14,7 +14,7 @@ module Mws
   autoload :Utils, 'mws/utils'
   autoload :VERSION, 'mws/version'
 
-  Utils.alias self, Apis::Feeds, 
+  Utils.alias self, Apis::Feeds,
     :Distance,
     :Feed,
     :ImageListing,
@@ -23,6 +23,7 @@ module Mws
     :PriceListing,
     :Product,
     :OrderFulfillment,
+    :OrderAcknowledgement,
     :Shipping,
     :Weight
 
