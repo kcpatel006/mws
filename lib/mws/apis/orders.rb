@@ -131,6 +131,7 @@ class Mws::Apis::Orders
 
     response
   end
+  alias_method :list_orders, :list
 
   # Call with :Amazon_Order_Id => 'xxyyzz' (from result of function list) to get the order items
   def list_items(params={})
@@ -184,6 +185,7 @@ class Mws::Apis::Orders
       }
     end
   end
+  alias_method :list_order_items, :list_items
 
   # Sends order fulfillment details to amazon
   # Needed: amazon_order_id, carrier_code, shipping_method, shipping_tracking_number
@@ -244,8 +246,7 @@ class Mws::Apis::Orders
 
   def send_order_acknowledgement(params, orders)
     # Validations
-    raise Mws::Errors::ValidationError.new('orders must be an array')         unless orders.is_a?(Array)
-    raise Mws::Errors::ValidationError.new('An amazon_order_id is needed')    unless orders.first.has_key?(:amazon_order_id)
+    raise Mws::Errors::ValidationError.new('orders must be an array') unless orders.is_a?(Array)
 
     message_number = 0
 
@@ -265,12 +266,12 @@ class Mws::Apis::Orders
               xml.MerchantOrderID   order[:merchant_order_id]
               xml.StatusCode        order[:status_code]
             }
-             order[:order_items].each do | item |
-               xml.Item {
-                 xml.AmazonOrderItemCode item[:order_item_id]
-                 xml.MerchantOrderItemID item[:merchant_order_id]
-               }
-             end
+             # order[:order_items].each do | item |
+             #   xml.Item {
+             #     xml.AmazonOrderItemCode item[:order_item_id]
+             #     xml.MerchantOrderItemID item[:merchant_order_id]
+             #   }
+             # end
           }
         end
       }
