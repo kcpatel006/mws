@@ -25,16 +25,20 @@ class Mws::Apis::Orders
 
     doc.xpath('Orders/Order').map do | node |
       {
-        :AmazonOrderId => node.xpath('AmazonOrderId').text,
-        :TotalAmount => node.xpath('OrderTotal/Amount').text,
-        :CurrencyCode => node.xpath('OrderTotal/CurrencyCode').text,
-        :BuyerName => node.xpath('BuyerName').text,
-        :BuyerEmail => node.xpath('BuyerEmail').text,
-        :OrderStatus => node.xpath('OrderStatus').text,
-        :OrderType => node.xpath('OrderType').text,
-        :PaymentMethod => node.xpath('PaymentMethod').text,
-        :PurchaseDate => node.xpath('PurchaseDate').text.to_time,
-        :LastUpdatedAt => node.xpath('LastUpdatedAt').text.to_time,
+        :AmazonOrderId    => node.xpath('AmazonOrderId').text,
+        :TotalAmount      => node.xpath('OrderTotal/Amount').text,
+        :TotalAmount      => node.xpath('OrderTotal/Amount').text,
+        :CurrencyCode     => node.xpath('OrderTotal/CurrencyCode').text,
+        :BuyerName        => node.xpath('BuyerName').text,
+        :BuyerEmail       => node.xpath('BuyerEmail').text,
+        :OrderStatus      => node.xpath('OrderStatus').text,
+        :OrderType        => node.xpath('OrderType').text,
+        :SalesChannel     => node.xpath('SalesChannel').text,
+        :OrderChannel     => node.xpath('OrderChannel').text,
+        :ShipServiceLevel => node.xpath('ShipServiceLevel').text,
+        :PaymentMethod    => node.xpath('PaymentMethod').text,
+        :PurchaseDate     => node.xpath('PurchaseDate').text.to_time,
+        :LastUpdatedAt    => node.xpath('LastUpdatedAt').text.to_time,
 
         :shipping_address =>
         {
@@ -66,16 +70,20 @@ class Mws::Apis::Orders
 
     doc.xpath('Orders/Order').map do | node |
       order = {
-        :AmazonOrderId => node.xpath('AmazonOrderId').text,
-        :TotalAmount => node.xpath('OrderTotal/Amount').text,
-        :CurrencyCode => node.xpath('OrderTotal/CurrencyCode').text,
-        :BuyerName => node.xpath('BuyerName').text,
-        :BuyerEmail => node.xpath('BuyerEmail').text,
-        :OrderStatus => node.xpath('OrderStatus').text,
-        :OrderType => node.xpath('OrderType').text,
-        :PaymentMethod => node.xpath('PaymentMethod').text,
-        :PurchaseDate => node.xpath('PurchaseDate').text.to_time,
-        :LastUpdatedAt => node.xpath('LastUpdatedAt').text.to_time,
+        :AmazonOrderId    => node.xpath('AmazonOrderId').text,
+        :TotalAmount      => node.xpath('OrderTotal/Amount').text,
+        :TotalAmount      => node.xpath('OrderTotal/Amount').text,
+        :CurrencyCode     => node.xpath('OrderTotal/CurrencyCode').text,
+        :BuyerName        => node.xpath('BuyerName').text,
+        :BuyerEmail       => node.xpath('BuyerEmail').text,
+        :OrderStatus      => node.xpath('OrderStatus').text,
+        :OrderType        => node.xpath('OrderType').text,
+        :SalesChannel     => node.xpath('SalesChannel').text,
+        :OrderChannel     => node.xpath('OrderChannel').text,
+        :ShipServiceLevel => node.xpath('ShipServiceLevel').text,
+        :PaymentMethod    => node.xpath('PaymentMethod').text,
+        :PurchaseDate     => node.xpath('PurchaseDate').text.to_time,
+        :LastUpdatedAt    => node.xpath('LastUpdatedAt').text.to_time,
 
         :shipping_address =>
         {
@@ -110,16 +118,20 @@ class Mws::Apis::Orders
 
       doc.xpath('Orders/Order').map do | node |
         order = {
-          :AmazonOrderId => node.xpath('AmazonOrderId').text,
-          :TotalAmount => node.xpath('OrderTotal/Amount').text,
-          :CurrencyCode => node.xpath('OrderTotal/CurrencyCode').text,
-          :BuyerName => node.xpath('BuyerName').text,
-          :BuyerEmail => node.xpath('BuyerEmail').text,
-          :OrderStatus => node.xpath('OrderStatus').text,
-          :OrderType => node.xpath('OrderType').text,
-          :PaymentMethod => node.xpath('PaymentMethod').text,
-          :PurchaseDate => node.xpath('PurchaseDate').text.to_time,
-          :LastUpdatedAt => node.xpath('LastUpdatedAt').text.to_time,
+          :AmazonOrderId    => node.xpath('AmazonOrderId').text,
+          :TotalAmount      => node.xpath('OrderTotal/Amount').text,
+          :TotalAmount      => node.xpath('OrderTotal/Amount').text,
+          :CurrencyCode     => node.xpath('OrderTotal/CurrencyCode').text,
+          :BuyerName        => node.xpath('BuyerName').text,
+          :BuyerEmail       => node.xpath('BuyerEmail').text,
+          :OrderStatus      => node.xpath('OrderStatus').text,
+          :OrderType        => node.xpath('OrderType').text,
+          :SalesChannel     => node.xpath('SalesChannel').text,
+          :OrderChannel     => node.xpath('OrderChannel').text,
+          :ShipServiceLevel => node.xpath('ShipServiceLevel').text,
+          :PaymentMethod    => node.xpath('PaymentMethod').text,
+          :PurchaseDate     => node.xpath('PurchaseDate').text.to_time,
+          :LastUpdatedAt    => node.xpath('LastUpdatedAt').text.to_time,
 
           :shipping_address =>
           {
