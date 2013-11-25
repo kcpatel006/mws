@@ -244,9 +244,17 @@ class Mws::Apis::Orders
 
   end
 
+
+  # Sends order acknowledgement details to Amazon
+  # Needed: amazon_order_id, merchant_order_id, status_code
+  #
+  # orders = [{:amazon_order_id => '123', :merchant_order_id => 'XYZ', :status_code => 'success' }]
   def send_order_acknowledgement(params, orders)
     # Validations
-    raise Mws::Errors::ValidationError.new('orders must be an array') unless orders.is_a?(Array)
+    raise Mws::Errors::ValidationError.new('orders must be an array')                 unless orders.is_a?(Array)
+    raise Mws::Errors::ValidationError.new('amazon_order_id entries are required')    if orders.collect{|o| o.has_key?(:amazon_order_id)}.include? false
+    raise Mws::Errors::ValidationError.new('merchant_order_id entries are required')  if orders.collect{|o| o.has_key?(:merchant_order_id)}.include? false
+    raise Mws::Errors::ValidationError.new('status_code must be success or failure')  if orders.collect{|o| o[:status_code] == 'success' || o[:status_code] == 'failure'}.include? false
 
     message_number = 0
 

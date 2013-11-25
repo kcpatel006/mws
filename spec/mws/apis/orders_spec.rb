@@ -74,10 +74,34 @@ module Mws::Apis
 
     context 'send_order_acknowledgement' do
 
+      it 'should require an array of orders' do
+        expect {
+          orders.send_order_acknowledgement(Hash.new, {amazon_order_id: '111', merchant_order_id: 'XYZ', status_code: 'success'})
+        }.to raise_error Mws::Errors::ValidationError, 'orders must be an array'
+      end
+
       it 'should require an amazon_order_id' do
-        # expect {
-        #   orders.send_order_acknowledgement(Hash.new, [{}])
-        # }.to raise_error Mws::Errors::ValidationError, 'An amazon_order_id is needed'
+        expect {
+          orders.send_order_acknowledgement(Hash.new, [{merchant_order_id: 'XYZ', status_code: 'success'}])
+        }.to raise_error Mws::Errors::ValidationError, 'amazon_order_id entries are required'
+      end
+
+      it 'should require a merchant_order_id' do
+        expect {
+          orders.send_order_acknowledgement(Hash.new, [{amazon_order_id: '111', status_code: 'success'}])
+        }.to raise_error Mws::Errors::ValidationError, 'merchant_order_id entries are required'
+      end
+
+      it 'should require a status_code' do
+        expect {
+          orders.send_order_acknowledgement(Hash.new, [{amazon_order_id: '111', merchant_order_id: 'XYZ'}])
+        }.to raise_error Mws::Errors::ValidationError, 'status_code must be success or failure'
+      end
+
+      it 'should require a valid status_code' do
+        expect {
+          orders.send_order_acknowledgement(Hash.new, [{amazon_order_id: '111', merchant_order_id: 'XYZ', status_code: 'great'}])
+        }.to raise_error Mws::Errors::ValidationError, 'status_code must be success or failure'
       end
 
     end
