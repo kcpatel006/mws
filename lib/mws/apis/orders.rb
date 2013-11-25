@@ -38,13 +38,17 @@ class Mws::Apis::Orders
 
         :shipping_address =>
         {
-          :name => node.xpath('ShippingAddress/Name').text,
-          :street1 => node.xpath('ShippingAddress/AddressLine1').text,
-          :street2 => node.xpath('ShippingAddress/AddressLine2').text,
-          :post_code => node.xpath('ShippingAddress/PostalCode').text,
-          :city => node.xpath('ShippingAddress/City').text,
-          :country_code => node.xpath('ShippingAddress/CountryCode').text,
-          :phone => node.xpath('ShippingAddress/Phone').text
+          :name             => node.xpath('ShippingAddress/Name').text,
+          :street1          => node.xpath('ShippingAddress/AddressLine1').text,
+          :street2          => node.xpath('ShippingAddress/AddressLine2').text,
+          :street3          => node.xpath('ShippingAddress/AddressLine3').text,
+          :city             => node.xpath('ShippingAddress/City').text,
+          :county           => node.xpath('ShippingAddress/Country').text,
+          :district         => node.xpath('ShippingAddress/District').text,
+          :state_or_region  => node.xpath('ShippingAddress/StateOrRegion').text,
+          :post_code        => node.xpath('ShippingAddress/PostalCode').text,
+          :country_code     => node.xpath('ShippingAddress/CountryCode').text,
+          :phone            => node.xpath('ShippingAddress/Phone').text
         }
       }
     end
@@ -75,13 +79,17 @@ class Mws::Apis::Orders
 
         :shipping_address =>
         {
-          :name => node.xpath('ShippingAddress/Name').text,
-          :street1 => node.xpath('ShippingAddress/AddressLine1').text,
-          :street2 => node.xpath('ShippingAddress/AddressLine2').text,
-          :post_code => node.xpath('ShippingAddress/PostalCode').text,
-          :city => node.xpath('ShippingAddress/City').text,
-          :country_code => node.xpath('ShippingAddress/CountryCode').text,
-          :phone => node.xpath('ShippingAddress/Phone').text
+          :name             => node.xpath('ShippingAddress/Name').text,
+          :street1          => node.xpath('ShippingAddress/AddressLine1').text,
+          :street2          => node.xpath('ShippingAddress/AddressLine2').text,
+          :street3          => node.xpath('ShippingAddress/AddressLine3').text,
+          :city             => node.xpath('ShippingAddress/City').text,
+          :county           => node.xpath('ShippingAddress/Country').text,
+          :district         => node.xpath('ShippingAddress/District').text,
+          :state_or_region  => node.xpath('ShippingAddress/StateOrRegion').text,
+          :post_code        => node.xpath('ShippingAddress/PostalCode').text,
+          :country_code     => node.xpath('ShippingAddress/CountryCode').text,
+          :phone            => node.xpath('ShippingAddress/Phone').text
         }
       }
 
@@ -115,13 +123,17 @@ class Mws::Apis::Orders
 
           :shipping_address =>
           {
-            :name => node.xpath('ShippingAddress/Name').text,
-            :street1 => node.xpath('ShippingAddress/AddressLine1').text,
-            :street2 => node.xpath('ShippingAddress/AddressLine2').text,
-            :post_code => node.xpath('ShippingAddress/PostalCode').text,
-            :city => node.xpath('ShippingAddress/City').text,
-            :country_code => node.xpath('ShippingAddress/CountryCode').text,
-            :phone => node.xpath('ShippingAddress/Phone').text
+            :name             => node.xpath('ShippingAddress/Name').text,
+            :street1          => node.xpath('ShippingAddress/AddressLine1').text,
+            :street2          => node.xpath('ShippingAddress/AddressLine2').text,
+            :street3          => node.xpath('ShippingAddress/AddressLine3').text,
+            :city             => node.xpath('ShippingAddress/City').text,
+            :county           => node.xpath('ShippingAddress/Country').text,
+            :district         => node.xpath('ShippingAddress/District').text,
+            :state_or_region  => node.xpath('ShippingAddress/StateOrRegion').text,
+            :post_code        => node.xpath('ShippingAddress/PostalCode').text,
+            :country_code     => node.xpath('ShippingAddress/CountryCode').text,
+            :phone            => node.xpath('ShippingAddress/Phone').text
           }
         }
 
