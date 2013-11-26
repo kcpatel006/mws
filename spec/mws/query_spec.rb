@@ -57,19 +57,19 @@ module Mws
     end
 
     it 'should gracefully handle empty markets list' do
-      Query.new(defaults.merge(markets: [])).params['MarketplaceIdList.Id.1'].should be nil
+      Query.new(defaults.merge(markets: [])).params['MarketplaceId.Id.1'].should be nil
     end
 
-    it 'should translate single market to MarketplaceIdList.Id.1' do
+    it 'should translate single market to MarketplaceId.Id.1' do
       market = 'ATVPDKIKX0DER'
-      Query.new(defaults.merge(markets: [ market ])).params['MarketplaceIdList.Id.1'].should == market
+      Query.new(defaults.merge(markets: [ market ])).params['MarketplaceId.Id.1'].should == market
     end
 
-    it 'should translate multiple markets to MarketplaceIdList.Id.*' do
+    it 'should translate multiple markets to MarketplaceId.Id.*' do
       markets = [ 'ATVPDKIKX0DER', 'KIKX0DERATVPD' ]
       query = Query.new defaults.merge(markets: markets)
       markets.each_with_index do | market, index |
-        query.params["MarketplaceIdList.Id.#{index + 1}"].should == market
+        query.params["MarketplaceId.Id.#{index + 1}"].should == market
       end
     end
 
@@ -100,7 +100,7 @@ module Mws
       end
 
       markets.each_with_index do | market, index |
-        query.params["MarketplaceIdList.Id.#{index + 1}"].should == market
+        query.params["MarketplaceId.Id.#{index + 1}"].should == market
       end
     end
 
