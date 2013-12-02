@@ -279,7 +279,7 @@ class Mws::Apis::Orders
     raise Mws::Errors::ValidationError.new('orders must be an array')                 unless orders.is_a?(Array)
     raise Mws::Errors::ValidationError.new('amazon_order_id entries are required')    if orders.collect{|o| o.has_key?(:amazon_order_id)}.include? false
     raise Mws::Errors::ValidationError.new('merchant_order_id entries are required')  if orders.collect{|o| o.has_key?(:merchant_order_id)}.include? false
-    raise Mws::Errors::ValidationError.new('status_code must be success or failure')  if orders.collect{|o| o[:status_code] == 'success' || o[:status_code] == 'failure'}.include? false
+    raise Mws::Errors::ValidationError.new('status_code must be success or failure')  if orders.collect{|o| o[:status_code] == 'Success' || o[:status_code] == 'Failure'}.include? false
 
     message_number = 0
 
@@ -298,13 +298,13 @@ class Mws::Apis::Orders
               xml.AmazonOrderID     order[:amazon_order_id]
               xml.MerchantOrderID   order[:merchant_order_id]
               xml.StatusCode        order[:status_code]
+              order[:items].each do | item |
+                xml.Item {
+                  xml.AmazonOrderItemCode item[:amazon_order_item_id]
+                  xml.MerchantOrderItemID item[:merchant_order_item_id]
+                }
+              end
             }
-             # order[:order_items].each do | item |
-             #   xml.Item {
-             #     xml.AmazonOrderItemCode item[:order_item_id]
-             #     xml.MerchantOrderItemID item[:merchant_order_id]
-             #   }
-             # end
           }
         end
       }
