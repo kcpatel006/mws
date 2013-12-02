@@ -25,26 +25,36 @@ class Mws::Apis::Orders
 
     doc.xpath('Orders/Order').map do | node |
       {
-        :AmazonOrderId => node.xpath('AmazonOrderId').text,
-        :TotalAmount => node.xpath('OrderTotal/Amount').text,
-        :CurrencyCode => node.xpath('OrderTotal/CurrencyCode').text,
-        :BuyerName => node.xpath('BuyerName').text,
-        :BuyerEmail => node.xpath('BuyerEmail').text,
-        :OrderStatus => node.xpath('OrderStatus').text,
-        :OrderType => node.xpath('OrderType').text,
-        :PaymentMethod => node.xpath('PaymentMethod').text,
-        :PurchaseDate => node.xpath('PurchaseDate').text.to_time,
-        :LastUpdatedAt => node.xpath('LastUpdatedAt').text.to_time,
+        :AmazonOrderId    => node.xpath('AmazonOrderId').text,
+        :SellerOrderId    => node.xpath('SellerOrderId').text,
+        :TotalAmount      => node.xpath('OrderTotal/Amount').text,
+        :TotalAmount      => node.xpath('OrderTotal/Amount').text,
+        :CurrencyCode     => node.xpath('OrderTotal/CurrencyCode').text,
+        :BuyerName        => node.xpath('BuyerName').text,
+        :BuyerEmail       => node.xpath('BuyerEmail').text,
+        :OrderStatus      => node.xpath('OrderStatus').text,
+        :OrderType        => node.xpath('OrderType').text,
+        :SalesChannel     => node.xpath('SalesChannel').text,
+        :OrderChannel     => node.xpath('OrderChannel').text,
+        :ShipServiceLevel => node.xpath('ShipServiceLevel').text,
+        :ShipmentServiceLevelCategory => node.xpath('ShipmentServiceLevelCategory').text,
+        :PaymentMethod    => node.xpath('PaymentMethod').text,
+        :PurchaseDate     => node.xpath('PurchaseDate').text.to_time,
+        :LastUpdatedAt    => node.xpath('LastUpdatedAt').text.to_time,
 
         :shipping_address =>
         {
-          :name => node.xpath('ShippingAddress/Name').text,
-          :street1 => node.xpath('ShippingAddress/AddressLine1').text,
-          :street2 => node.xpath('ShippingAddress/AddressLine2').text,
-          :post_code => node.xpath('ShippingAddress/PostalCode').text,
-          :city => node.xpath('ShippingAddress/City').text,
-          :country_code => node.xpath('ShippingAddress/CountryCode').text,
-          :phone => node.xpath('ShippingAddress/Phone').text
+          :name             => node.xpath('ShippingAddress/Name').text,
+          :street1          => node.xpath('ShippingAddress/AddressLine1').text,
+          :street2          => node.xpath('ShippingAddress/AddressLine2').text,
+          :street3          => node.xpath('ShippingAddress/AddressLine3').text,
+          :city             => node.xpath('ShippingAddress/City').text,
+          :county           => node.xpath('ShippingAddress/Country').text,
+          :district         => node.xpath('ShippingAddress/District').text,
+          :state_or_region  => node.xpath('ShippingAddress/StateOrRegion').text,
+          :post_code        => node.xpath('ShippingAddress/PostalCode').text,
+          :country_code     => node.xpath('ShippingAddress/CountryCode').text,
+          :phone            => node.xpath('ShippingAddress/Phone').text
         }
       }
     end
@@ -62,26 +72,36 @@ class Mws::Apis::Orders
 
     doc.xpath('Orders/Order').map do | node |
       order = {
-        :AmazonOrderId => node.xpath('AmazonOrderId').text,
-        :TotalAmount => node.xpath('OrderTotal/Amount').text,
-        :CurrencyCode => node.xpath('OrderTotal/CurrencyCode').text,
-        :BuyerName => node.xpath('BuyerName').text,
-        :BuyerEmail => node.xpath('BuyerEmail').text,
-        :OrderStatus => node.xpath('OrderStatus').text,
-        :OrderType => node.xpath('OrderType').text,
-        :PaymentMethod => node.xpath('PaymentMethod').text,
-        :PurchaseDate => node.xpath('PurchaseDate').text.to_time,
-        :LastUpdatedAt => node.xpath('LastUpdatedAt').text.to_time,
+        :AmazonOrderId    => node.xpath('AmazonOrderId').text,
+        :SellerOrderId    => node.xpath('SellerOrderId').text,
+        :TotalAmount      => node.xpath('OrderTotal/Amount').text,
+        :TotalAmount      => node.xpath('OrderTotal/Amount').text,
+        :CurrencyCode     => node.xpath('OrderTotal/CurrencyCode').text,
+        :BuyerName        => node.xpath('BuyerName').text,
+        :BuyerEmail       => node.xpath('BuyerEmail').text,
+        :OrderStatus      => node.xpath('OrderStatus').text,
+        :OrderType        => node.xpath('OrderType').text,
+        :SalesChannel     => node.xpath('SalesChannel').text,
+        :OrderChannel     => node.xpath('OrderChannel').text,
+        :ShipServiceLevel => node.xpath('ShipServiceLevel').text,
+        :ShipmentServiceLevelCategory => node.xpath('ShipmentServiceLevelCategory').text,
+        :PaymentMethod    => node.xpath('PaymentMethod').text,
+        :PurchaseDate     => node.xpath('PurchaseDate').text.to_time,
+        :LastUpdatedAt    => node.xpath('LastUpdatedAt').text.to_time,
 
         :shipping_address =>
         {
-          :name => node.xpath('ShippingAddress/Name').text,
-          :street1 => node.xpath('ShippingAddress/AddressLine1').text,
-          :street2 => node.xpath('ShippingAddress/AddressLine2').text,
-          :post_code => node.xpath('ShippingAddress/PostalCode').text,
-          :city => node.xpath('ShippingAddress/City').text,
-          :country_code => node.xpath('ShippingAddress/CountryCode').text,
-          :phone => node.xpath('ShippingAddress/Phone').text
+          :name             => node.xpath('ShippingAddress/Name').text,
+          :street1          => node.xpath('ShippingAddress/AddressLine1').text,
+          :street2          => node.xpath('ShippingAddress/AddressLine2').text,
+          :street3          => node.xpath('ShippingAddress/AddressLine3').text,
+          :city             => node.xpath('ShippingAddress/City').text,
+          :county           => node.xpath('ShippingAddress/Country').text,
+          :district         => node.xpath('ShippingAddress/District').text,
+          :state_or_region  => node.xpath('ShippingAddress/StateOrRegion').text,
+          :post_code        => node.xpath('ShippingAddress/PostalCode').text,
+          :country_code     => node.xpath('ShippingAddress/CountryCode').text,
+          :phone            => node.xpath('ShippingAddress/Phone').text
         }
       }
 
@@ -102,26 +122,36 @@ class Mws::Apis::Orders
 
       doc.xpath('Orders/Order').map do | node |
         order = {
-          :AmazonOrderId => node.xpath('AmazonOrderId').text,
-          :TotalAmount => node.xpath('OrderTotal/Amount').text,
-          :CurrencyCode => node.xpath('OrderTotal/CurrencyCode').text,
-          :BuyerName => node.xpath('BuyerName').text,
-          :BuyerEmail => node.xpath('BuyerEmail').text,
-          :OrderStatus => node.xpath('OrderStatus').text,
-          :OrderType => node.xpath('OrderType').text,
-          :PaymentMethod => node.xpath('PaymentMethod').text,
-          :PurchaseDate => node.xpath('PurchaseDate').text.to_time,
-          :LastUpdatedAt => node.xpath('LastUpdatedAt').text.to_time,
+          :AmazonOrderId    => node.xpath('AmazonOrderId').text,
+          :SellerOrderId    => node.xpath('SellerOrderId').text,
+          :TotalAmount      => node.xpath('OrderTotal/Amount').text,
+          :TotalAmount      => node.xpath('OrderTotal/Amount').text,
+          :CurrencyCode     => node.xpath('OrderTotal/CurrencyCode').text,
+          :BuyerName        => node.xpath('BuyerName').text,
+          :BuyerEmail       => node.xpath('BuyerEmail').text,
+          :OrderStatus      => node.xpath('OrderStatus').text,
+          :OrderType        => node.xpath('OrderType').text,
+          :SalesChannel     => node.xpath('SalesChannel').text,
+          :OrderChannel     => node.xpath('OrderChannel').text,
+          :ShipServiceLevel => node.xpath('ShipServiceLevel').text,
+          :ShipmentServiceLevelCategory => node.xpath('ShipmentServiceLevelCategory').text,
+          :PaymentMethod    => node.xpath('PaymentMethod').text,
+          :PurchaseDate     => node.xpath('PurchaseDate').text.to_time,
+          :LastUpdatedAt    => node.xpath('LastUpdatedAt').text.to_time,
 
           :shipping_address =>
           {
-            :name => node.xpath('ShippingAddress/Name').text,
-            :street1 => node.xpath('ShippingAddress/AddressLine1').text,
-            :street2 => node.xpath('ShippingAddress/AddressLine2').text,
-            :post_code => node.xpath('ShippingAddress/PostalCode').text,
-            :city => node.xpath('ShippingAddress/City').text,
-            :country_code => node.xpath('ShippingAddress/CountryCode').text,
-            :phone => node.xpath('ShippingAddress/Phone').text
+            :name             => node.xpath('ShippingAddress/Name').text,
+            :street1          => node.xpath('ShippingAddress/AddressLine1').text,
+            :street2          => node.xpath('ShippingAddress/AddressLine2').text,
+            :street3          => node.xpath('ShippingAddress/AddressLine3').text,
+            :city             => node.xpath('ShippingAddress/City').text,
+            :county           => node.xpath('ShippingAddress/Country').text,
+            :district         => node.xpath('ShippingAddress/District').text,
+            :state_or_region  => node.xpath('ShippingAddress/StateOrRegion').text,
+            :post_code        => node.xpath('ShippingAddress/PostalCode').text,
+            :country_code     => node.xpath('ShippingAddress/CountryCode').text,
+            :phone            => node.xpath('ShippingAddress/Phone').text
           }
         }
 
@@ -131,6 +161,7 @@ class Mws::Apis::Orders
 
     response
   end
+  alias_method :list_orders, :list
 
   # Call with :Amazon_Order_Id => 'xxyyzz' (from result of function list) to get the order items
   def list_items(params={})
@@ -175,15 +206,11 @@ class Mws::Apis::Orders
         {
           :Amount => node.xpath('GiftWrapTax/Amount').text,
           :CurrencyCode => node.xpath('GiftWrapTax/CurrencyCode').text
-        },
-        :GiftWrapTax =>
-        {
-          :Amount => node.xpath('GiftWrapTax/Amount').text,
-          :CurrencyCode => node.xpath('GiftWrapTax/CurrencyCode').text
         }
       }
     end
   end
+  alias_method :list_order_items, :list_items
 
   # Sends order fulfillment details to amazon
   # Needed: amazon_order_id, carrier_code, shipping_method, shipping_tracking_number
@@ -191,15 +218,16 @@ class Mws::Apis::Orders
   #
   # orders = {:amazon_order_id => 123, :order_items => [{:order_item_id => 124, :amount => 125}] }
   def send_fulfillment_data(params, orders)
-    raise Mws::Errors::ValidationError.new('orders must be an array') if !orders.is_a?(Array)
-    raise Mws::Errors::ValidationError.new('An amazon_order_id is needed') if !orders.first.has_key?(:amazon_order_id)
-    raise Mws::Errors::ValidationError.new('An amazon_order_id is needed') if !orders.first[:amazon_order_id].present?
-    raise Mws::Errors::ValidationError.new('A carrier_code is needed') if !orders.first.has_key?(:carrier_code) || !orders.first[:carrier_code].present?
-    raise Mws::Errors::ValidationError.new('A shipping_method is needed') if !orders.first.has_key?(:shipping_method) || !orders.first[:shipping_method].present?
-    raise Mws::Errors::ValidationError.new('orders must be a array.') if !orders.is_a?(Array)
-    raise Mws::Errors::ValidationError.new('At least one order is needed.') if orders.count == 0
-    raise Mws::Errors::ValidationError.new('order_items must be a array.') if !orders.first[:order_items].is_a?(Array)
-    raise Mws::Errors::ValidationError.new('order_items must be a array.') if orders.first[:order_items].count == 0
+    raise Mws::Errors::ValidationError.new('orders must be an array')         unless orders.is_a?(Array)
+    raise Mws::Errors::ValidationError.new('An amazon_order_id is needed')    unless orders.first.has_key?(:amazon_order_id)
+    raise Mws::Errors::ValidationError.new('An amazon_order_id is needed')    unless orders.first[:amazon_order_id].present?
+    raise Mws::Errors::ValidationError.new('A carrier_code is needed')        unless orders.first.has_key?(:carrier_code) && orders.first[:carrier_code].present?
+    raise Mws::Errors::ValidationError.new('A shipping_method is needed')     unless orders.first.has_key?(:shipping_method) && orders.first[:shipping_method].present?
+    raise Mws::Errors::ValidationError.new('orders must be a array.')         unless orders.is_a?(Array)
+    raise Mws::Errors::ValidationError.new('At least one order is needed.')   if orders.count == 0
+    raise Mws::Errors::ValidationError.new('order_items must be a array.')    unless orders.first[:order_items].is_a?(Array)
+    raise Mws::Errors::ValidationError.new('order_items must be a array.')    if orders.first[:order_items].count == 0
+
     params[:markets] ||= [ params.delete(:markets) || params.delete(:market) || @param_defaults[:market] ].flatten.compact
 
     message_number = 0
@@ -241,4 +269,48 @@ class Mws::Apis::Orders
 
   end
 
+
+  # Sends order acknowledgement details to Amazon
+  # Needed: amazon_order_id, merchant_order_id, status_code
+  #
+  # orders = [{:amazon_order_id => '123', :merchant_order_id => 'XYZ', :status_code => 'success' }]
+  def send_acknowledgement(params, orders)
+    # Validations
+    raise Mws::Errors::ValidationError.new('orders must be an array')                 unless orders.is_a?(Array)
+    raise Mws::Errors::ValidationError.new('amazon_order_id entries are required')    if orders.collect{|o| o.has_key?(:amazon_order_id)}.include? false
+    raise Mws::Errors::ValidationError.new('merchant_order_id entries are required')  if orders.collect{|o| o.has_key?(:merchant_order_id)}.include? false
+    raise Mws::Errors::ValidationError.new('status_code must be success or failure')  if orders.collect{|o| o[:status_code] == 'Success' || o[:status_code] == 'Failure'}.include? false
+
+    message_number = 0
+
+    order_xml = Nokogiri::XML::Builder.new do | xml |
+      xml.AmazonEnvelope('xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'xsi:noNamespaceSchemaLocation' => 'amznenvelope.xsd') {
+        xml.Header {
+          xml.DocumentVersion '1.01'
+          xml.MerchantIdentifier params[:merchant_identifier]
+        }
+        xml.MessageType 'OrderAcknowledgement'
+
+        orders.each do | order |
+          xml.Message {
+            xml.MessageID (message_number+=1).to_s
+            xml.OrderAcknowledgement {
+              xml.AmazonOrderID     order[:amazon_order_id]
+              xml.MerchantOrderID   order[:merchant_order_id]
+              xml.StatusCode        order[:status_code]
+              order[:items].each do | item |
+                xml.Item {
+                  xml.AmazonOrderItemCode item[:amazon_order_item_id]
+                  xml.MerchantOrderItemID item[:merchant_order_item_id]
+                }
+              end
+            }
+          }
+        end
+      }
+    end.to_xml
+
+    @connection.feeds.submit order_xml, {:feed_type => :order_acknowledgement}
+
+  end
 end

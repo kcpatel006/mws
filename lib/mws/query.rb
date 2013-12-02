@@ -11,7 +11,7 @@ class Mws::Query
 
     options[:aws_access_key_id] ||= options.delete :access
     options[:seller_id]         ||= options.delete(:merchant) || options.delete(:seller)
-    options[:marketplace_id]    ||= options.delete(:market) || options.delete(:markets) || []
+    options[:marketplace_id]    ||= options.delete(:market)   || options.delete(:markets) || []
 
     @params = Mws::Utils::format_params options
   end
