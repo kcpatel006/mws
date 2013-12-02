@@ -28,9 +28,6 @@ module Mws::Apis::Feeds
 
     def submit(body, params)
       params[:feed_type] = Feed::Type.for(params[:feed_type]).val
-  puts params
-  puts body
-  puts @defaults
       doc = @connection.post '/', params, body, @defaults.merge(action: 'SubmitFeed')
       SubmissionInfo.from_xml doc.xpath('FeedSubmissionInfo').first
     end
