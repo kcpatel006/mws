@@ -196,7 +196,6 @@ class Mws::Apis::Orders
           :Amount => node.xpath('ShippingDiscount/Amount').text,
           :CurrencyCode => node.xpath('ShippingDiscount/CurrencyCode').text
         },
-        :Condition => node.xpath('ItemPrice/Amount').text,
         :GiftWrapPrice =>
         {
           :Amount => node.xpath('GiftWrapPrice/Amount').text,
