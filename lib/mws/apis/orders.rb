@@ -169,43 +169,55 @@ class Mws::Apis::Orders
     options = @option_defaults.merge action: 'ListOrderItems'
     doc = @connection.get "/Orders/#{options[:version]}", params, options
 
-    doc.xpath('OrderItems/OrderItem').map do | node |
-      {
-        :OrderItemId => node.xpath('OrderItemId').text,
-        :Amount => node.xpath('QuantityOrdered').text,
-        :Sku => node.xpath('SellerSKU').text,
-        :Asin => node.xpath('ASIN').text,
-        :Title => node.xpath('Title').text,
-        :ItemPrice =>
-        {
-          :Amount => node.xpath('ItemPrice/Amount').text,
+    doc.xpath('OrderItems/OrderItem').map do | node | {
+        :OrderItemId  => node.xpath('OrderItemId').text,
+        :Amount       => node.xpath('QuantityOrdered').text,
+        :Sku          => node.xpath('SellerSKU').text,
+        :Asin         => node.xpath('ASIN').text,
+        :Title        => node.xpath('Title').text,
+
+        :ItemPrice => {
+          :Amount       => node.xpath('ItemPrice/Amount').text,
           :CurrencyCode => node.xpath('ItemPrice/CurrencyCode').text
         },
-        :ShippingPrice =>
-        {
-          :Amount => node.xpath('ShippingPrice/Amount').text,
+        :ItemTax => {
+          :Amount       => node.xpath('ItemTax/Amount').text,
+          :CurrencyCode => node.xpath('ItemTax/CurrencyCode').text
+        },
+        :ShippingPrice => {
+          :Amount       => node.xpath('ShippingPrice/Amount').text,
           :CurrencyCode => node.xpath('ShippingPrice/CurrencyCode').text
         },
-        :PromotionDiscount =>
-        {
-          :Amount => node.xpath('PromotionDiscount/Amount').text,
-          :CurrencyCode => node.xpath('PromotionDiscount/CurrencyCode').text
+        :ShippingTax => {
+          :Amount       => node.xpath('ShippingTax/Amount').text,
+          :CurrencyCode => node.xpath('ShippingTax/CurrencyCode').text
         },
-        :ShippingDiscount =>
-        {
-          :Amount => node.xpath('ShippingDiscount/Amount').text,
+        :ShippingDiscount => {
+          :Amount       => node.xpath('ShippingDiscount/Amount').text,
           :CurrencyCode => node.xpath('ShippingDiscount/CurrencyCode').text
         },
-        :GiftWrapPrice =>
-        {
-          :Amount => node.xpath('GiftWrapPrice/Amount').text,
+        :CODFee => {
+          :Amount       => node.xpath('CODFee/Amount').text,
+          :CurrencyCode => node.xpath('CODFee/CurrencyCode').text
+        },
+        :CODFeeDiscount => {
+          :Amount       => node.xpath('CODFeeDiscount/Amount').text,
+          :CurrencyCode => node.xpath('CODFeeDiscount/CurrencyCode').text
+        },
+        :GiftWrapPrice => {
+          :Amount       => node.xpath('GiftWrapPrice/Amount').text,
           :CurrencyCode => node.xpath('GiftWrapPrice/CurrencyCode').text
         },
-        :GiftWrapTax =>
-        {
-          :Amount => node.xpath('GiftWrapTax/Amount').text,
+        :GiftWrapTax => {
+          :Amount       => node.xpath('GiftWrapTax/Amount').text,
           :CurrencyCode => node.xpath('GiftWrapTax/CurrencyCode').text
-        }
+        },
+        :PromotionDiscount => {
+          :Amount       => node.xpath('PromotionDiscount/Amount').text,
+          :CurrencyCode => node.xpath('PromotionDiscount/CurrencyCode').text
+        },
+        :PromotionIds => node.xpath('PromotionIds').text,
+        :PromotionId  => node.xpath('PromotionId').text
       }
     end
   end
