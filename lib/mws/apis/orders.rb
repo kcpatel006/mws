@@ -170,11 +170,13 @@ class Mws::Apis::Orders
     doc = @connection.get "/Orders/#{options[:version]}", params, options
 
     doc.xpath('OrderItems/OrderItem').map do | node | {
-        :OrderItemId  => node.xpath('OrderItemId').text,
-        :Amount       => node.xpath('QuantityOrdered').text,
-        :Sku          => node.xpath('SellerSKU').text,
-        :Asin         => node.xpath('ASIN').text,
-        :Title        => node.xpath('Title').text,
+        :OrderItemId      => node.xpath('OrderItemId').text,
+        #TODO: Deprecate 'Amount'
+        :Amount           => node.xpath('QuantityOrdered').text,
+        :QuantityOrdered  => node.xpath('QuantityOrdered').text,
+        :Sku              => node.xpath('SellerSKU').text,
+        :Asin             => node.xpath('ASIN').text,
+        :Title            => node.xpath('Title').text,
 
         :ItemPrice => {
           :Amount       => node.xpath('ItemPrice/Amount').text,
