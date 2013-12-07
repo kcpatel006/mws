@@ -28,7 +28,6 @@ class Mws::Apis::Orders
         :AmazonOrderId    => node.xpath('AmazonOrderId').text,
         :SellerOrderId    => node.xpath('SellerOrderId').text,
         :TotalAmount      => node.xpath('OrderTotal/Amount').text,
-        :TotalAmount      => node.xpath('OrderTotal/Amount').text,
         :CurrencyCode     => node.xpath('OrderTotal/CurrencyCode').text,
         :BuyerName        => node.xpath('BuyerName').text,
         :BuyerEmail       => node.xpath('BuyerEmail').text,
@@ -74,7 +73,6 @@ class Mws::Apis::Orders
       order = {
         :AmazonOrderId    => node.xpath('AmazonOrderId').text,
         :SellerOrderId    => node.xpath('SellerOrderId').text,
-        :TotalAmount      => node.xpath('OrderTotal/Amount').text,
         :TotalAmount      => node.xpath('OrderTotal/Amount').text,
         :CurrencyCode     => node.xpath('OrderTotal/CurrencyCode').text,
         :BuyerName        => node.xpath('BuyerName').text,
@@ -124,7 +122,6 @@ class Mws::Apis::Orders
         order = {
           :AmazonOrderId    => node.xpath('AmazonOrderId').text,
           :SellerOrderId    => node.xpath('SellerOrderId').text,
-          :TotalAmount      => node.xpath('OrderTotal/Amount').text,
           :TotalAmount      => node.xpath('OrderTotal/Amount').text,
           :CurrencyCode     => node.xpath('OrderTotal/CurrencyCode').text,
           :BuyerName        => node.xpath('BuyerName').text,
