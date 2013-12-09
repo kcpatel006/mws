@@ -279,10 +279,7 @@ class Mws::Apis::Orders
       }
     end.to_xml
 
-p order_xml
-
-    # @connection.feeds.submit order_xml, {:feed_type => :order_fulfillment}
-
+    @connection.feeds.submit order_xml, {:feed_type => :order_fulfillment}
   end
 
 
@@ -327,6 +324,5 @@ p order_xml
     end.to_xml
 
     @connection.feeds.submit order_xml, {:feed_type => :order_acknowledgement}
-
   end
 end
