@@ -117,7 +117,7 @@ module Mws
         ).and_return(signer)
         signer.should_receive(:sign).with('the_query').and_return('the_signed_query')
         connection.should_receive(:response_for).with(:get, '/foo', 'the_signed_query', nil).and_return('the_response')
-        connection.should_receive(:parse).with('the_response', {})
+        connection.should_receive(:parse).with('the_response', {xpath: nil})
         connection.request(:get, '/foo', {}, nil, {})
       end
 
@@ -144,7 +144,7 @@ module Mws
         ).and_return(signer)
         signer.should_receive(:sign).with('the_query').and_return('the_signed_query')
         connection.should_receive(:response_for).with(:get, '/foo', 'the_signed_query', nil).and_return('the_response')
-        connection.should_receive(:parse).with('the_response', {})
+        connection.should_receive(:parse).with('the_response', {xpath: nil})
         connection.request(:get, '/foo', { foo: 'bar', baz: 'quk' }, nil, {})
       end
 
@@ -164,7 +164,7 @@ module Mws
         ).and_return(signer)
         signer.should_receive(:sign).with('the_query').and_return('the_signed_query')
         connection.should_receive(:response_for).with(:get, '/foo', 'the_signed_query', nil).and_return('the_response')
-        connection.should_receive(:parse).with('the_response', { action: 'SubmitFeed', version: '2009-01-01' })
+        connection.should_receive(:parse).with('the_response', { action: 'SubmitFeed', version: '2009-01-01', xpath: nil })
         connection.request(:get, '/foo', {}, nil, { action: 'SubmitFeed', version: '2009-01-01' })
       end
 

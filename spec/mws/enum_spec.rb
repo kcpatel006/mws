@@ -87,7 +87,7 @@ module Mws
       it 'should be able to find an enum entry from an enum entry' do
         OrderStatus.for(OrderStatus.PENDING).should == OrderStatus.PENDING
       end
-      
+
     end
 
     context '#sym' do
@@ -160,7 +160,7 @@ module Mws
       OrderStatus.for('Unshipped').should == OrderStatus.UNSHIPPED
       OrderStatus.for('PartiallyShipped').should == OrderStatus.UNSHIPPED
     end
-    
+
   end
 
 end
