@@ -28,16 +28,22 @@ module Mws::Apis
 
     context 'send_fullfillment_data' do
 
-      it 'should require an amazon_order_id' do
+      it 'should require an *_order_id (either Amazon or Merchant)' do
         expect {
           orders.send_fulfillment_data(Hash.new, [{}])
-        }.to raise_error Mws::Errors::ValidationError, 'An amazon_order_id is needed'
+        }.to raise_error Mws::Errors::ValidationError, 'An *_order_id is needed'
       end
 
-      it 'should require an amazon_order_id' do
+      it 'should require a valid *_order_id (either Amazon or Merchant)' do
         expect {
           orders.send_fulfillment_data({}, [{:amazon_order_id => ''}])
-        }.to raise_error Mws::Errors::ValidationError, 'An amazon_order_id is needed'
+        }.to raise_error Mws::Errors::ValidationError, 'An *_order_id is needed'
+      end
+
+      it 'should require a valid *_order_id (either Amazon or Merchant)' do
+        expect {
+          orders.send_fulfillment_data({}, [{:merchant_order_id => ''}])
+        }.to raise_error Mws::Errors::ValidationError, 'An *_order_id is needed'
       end
 
       it 'should require an carrier_code' do
